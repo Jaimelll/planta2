@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Planta"
+  config.site_title = "Sistema"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -64,13 +64,14 @@ ActiveAdmin.setup do |config|
   # CanCanAdapter or make your own. Please refer to documentation.
   config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
+
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
   # case when Pundit is unable to find suitable policy.
-  # config.pundit_default_policy = "MyDefaultPunditPolicy"
+  #config.pundit_default_policy = "MyDefaultPunditPolicy"
 
   # You can customize your CanCan Ability class name here.
-   config.cancan_ability_class = "Ability"
+  config.cancan_ability_class = "Ability"
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens
@@ -119,7 +120,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.comments = false
+  config.comments = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -179,13 +180,6 @@ ActiveAdmin.setup do |config|
   #
   # config.breadcrumb = false
 
-  # == Create Another Checkbox
-  #
-  # Create another checkbox is disabled by default. You can customize it for individual
-  # resources or you can enable them globally from here.
-  #
-  # config.create_another = true
-
   # == Register Stylesheets & Javascripts
   #
   # We recommend using the built in Active Admin layout and loading
@@ -240,7 +234,7 @@ ActiveAdmin.setup do |config|
   #   config.namespace :admin do |admin|
   #
   #     # Disable the links entirely
-  #     admin.download_links = false
+  #  admin.download_links = false
   #
   #     # Only show XML & PDF options
   #     admin.download_links = [:xml, :pdf]
@@ -282,7 +276,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-   config.footer = 'Sistema'
+   config.footer = 'Sistema '
 
   # == Sorting
   #

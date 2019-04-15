@@ -76,7 +76,9 @@ ActiveAdmin.register Product do
     
               attributes_table do
     
-    
+                row ("nombre") do |producto|
+                  link_to "#{producto.nombre} ", admin_product_formulas_path(producto)
+                end
                 row :codigo
                 row :nombre
                 row :descripcion

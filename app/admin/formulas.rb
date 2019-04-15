@@ -85,7 +85,21 @@ ActiveAdmin.register Formula do
     
           end
     
-    
+          sidebar "Producto" do
+            if params[:product_id] then
+              
+              nn="ir a."+Product.where(id:params[:product_id]).
+              select('nombre as dd').first.dd.capitalize
+
+          
+           
+              li link_to "#{nn}", admin_product_path(params[:product_id])
+         
+           
+          
+          
+          end# de if
+          end # de sider
     
     
     

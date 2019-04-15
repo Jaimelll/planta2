@@ -5,7 +5,7 @@ ActiveAdmin.register Formula do
 
     permit_params  :codigo, :product_id,  :cantidad,
        :factor, :unidad, :seccion,
-         :obs, :pedido, :admin_user_id
+         :obs, :pedido, :admin_user_id, :for1
     
     
     
@@ -21,6 +21,10 @@ ActiveAdmin.register Formula do
     
     
     index :title => "Formulación"  do
+
+            column("Material")do |mat|
+               Product.where(id:mat.for1).select('nombre as dd').first.dd
+            end  
             column("codigo")
             column("product_id")
             column("cantidad")
@@ -43,6 +47,8 @@ ActiveAdmin.register Formula do
                   f.inputs "#{nn}" do
                   f.input :product_id, :label => 'Producto' ,
                            :input_html => { :value => params[:product_id]}, :as => :hidden
+                  f.input :for1, :label => 'Material', :as => :select, :collection =>  
+                                   Product.where('id>0').map{|u| [u.nombre.capitalize, u.id]}
                   f.input :codigo, :input_html => { :style =>  'width:30%'}
                   f.input :cantidad, :input_html => { :style =>  'width:30%'}
                   f.input :factor, :input_html => { :style =>  'width:30%'}
@@ -69,6 +75,11 @@ ActiveAdmin.register Formula do
                 row :product_id do |formula|
                   link_to "#{nn}", admin_product_formulas_path(formula.product_id)
                 end
+
+              
+                row "Material" do |mat|
+                  Product.where(id:mat.for1).select('nombre as dd').first.dd
+                end 
                 row :codigo
                 row :cantidad
                 row :factor

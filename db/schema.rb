@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_161741) do
+ActiveRecord::Schema.define(version: 2019_04_15_205424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,28 @@ ActiveRecord::Schema.define(version: 2019_04_15_161741) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "formulas", force: :cascade do |t|
+    t.string "codigo"
+    t.bigint "product_id"
+    t.float "cantidad"
+    t.float "factor"
+    t.integer "unidad"
+    t.integer "seccion"
+    t.string "obs"
+    t.float "pedido"
+    t.integer "for1"
+    t.integer "for2"
+    t.float "for3"
+    t.float "for4"
+    t.string "for5"
+    t.string "for6"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_formulas_on_admin_user_id"
+    t.index ["product_id"], name: "index_formulas_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
@@ -72,4 +94,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_161741) do
     t.index ["admin_user_id"], name: "index_products_on_admin_user_id"
   end
 
+  add_foreign_key "formulas", "admin_users"
+  add_foreign_key "formulas", "products"
 end

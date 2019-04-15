@@ -24,15 +24,21 @@ ActiveAdmin.register Product do
     
     menu  priority: 30, label: "Productos"
     
-    
+    ActiveAdmin.register Formula do
+      belongs_to :product
+    end
     
  
     
+    filter :codigo
     filter :nombre
+    filter :descripcion
     
     
-    
-    index do
+       index :title => 'Lista de Productos' do
+      column("nombre") do |producto|
+          link_to "#{producto.nombre} ", admin_product_formulas_path(producto)
+      end
       column("codigo") 
       column("nombre")     
       column("descripcion")

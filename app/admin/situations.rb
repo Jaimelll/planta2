@@ -65,7 +65,7 @@ ActiveAdmin.register Situation do
       
       
           
-            row :cta
+            
             row :cuenta
             row :detalle
             row :importe

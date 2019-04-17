@@ -5,12 +5,7 @@ ActiveAdmin.register Situation do
       menu priority: 2, label: "SITUACION FINANCIERA"
 
 
-      Formula.where(product_id:1).order('unidad').each do |situa|
-        scope :"#{situa.codigo} ", :default => true do |situa2|
-              Situation.where(cta:situa.cantidad)
 
-         end
-      end
 
       
       

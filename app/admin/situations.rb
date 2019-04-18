@@ -7,6 +7,16 @@ ActiveAdmin.register Situation do
 
 
 
+      Formula.where(product_id:1).order('unidad').each do |situa|
+        
+        scope :"#{situa.cantidad.to_i.to_s} ", :default => true do |situa2|
+
+              Situation.where(cta:situa.cantidad)
+
+         end
+      end
+
+
       
       
       
@@ -16,9 +26,12 @@ ActiveAdmin.register Situation do
       filter :cuenta
       filter :detalle
       filter :importe
-      
-      index :title => proc {"BUSCADOR"}   do
+
+
      
+ 
+        index :title => proc {"Cuentas"}   do
+        # index title:scop1(params[:scope]) do
       
           
         column("cuenta")
@@ -74,20 +87,36 @@ ActiveAdmin.register Situation do
       
       end # de show
       
-      sidebar "Totales", only: :index  do
-       
-          vsac=Situation.ransack(params[:q]).result.sum(:importe)
-          
-          div :class =>"grueso" do
-             li  "Importe Anual:  "+  number_to_currency(vsac, :unit => "S/ ",:precision=> 0)
-       
-          end 
+      def scop1(var)
+        if var then
+          Formula.where(cantidad:var).select('codigo as dd').first.dd
+        else
+          Formula.where(cantidad:60).select('codigo as dd').first.dd
+        end  
+      end  
     
-              
+
+      sidebar "CUENTA" do
+        def scop1(var)
+          if var then
+         li   Formula.where(cantidad:var).select('codigo as dd').first.dd
+         li   "IMPORTE= "+number_with_delimiter(Situation.where(cta:var).sum('importe')), delimiter: ","
+         
+          else
+         li   Formula.where(cantidad:60).select('codigo as dd').first.dd
+         li   number_with_delimiter(Situation.where(cta:60).sum('importe')), delimiter: ","
+          end  
+        end  
+
+        div :class =>"grueso" do
+           scop1(params[:scope])
+
         end
+
+    end # de sider
         
       
-           
+     
       
       end
       

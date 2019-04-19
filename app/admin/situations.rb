@@ -5,19 +5,26 @@ ActiveAdmin.register Situation do
       menu priority: 2, label: "SITUACION FINANCIERA"
 
 
-
+   
 
       Formula.where(product_id:1).order('unidad').each do |situa|
         
-        scope :"#{situa.cantidad.to_i.to_s} ", :default => true do |situa2|
+        scope :"#{situa.cantidad.to_i.to_s}", :default => true do |situa2|
 
               Situation.where(cta:situa.cantidad)
 
          end
       end
 
+      def scop1(var)
+        if var then
+          Formula.where(cantidad:var).select('codigo as dd').first.dd
+        else
+          Formula.where(cantidad:60).select('codigo as dd').first.dd
+        end  
+      end  
 
-      
+   
       
       
       
@@ -30,9 +37,15 @@ ActiveAdmin.register Situation do
 
      
  
-        index :title => proc {"Cuentas"}   do
+        index :title => proc {"Situación Financiera al 31 de diciembre del 2018-Cuentas"}   do
         # index title:scop1(params[:scope]) do
-      
+        def scop2(var)
+          if var then
+            Situation.where(cta:var).sum('importe')
+          else
+            Situation.where(cta:60).sum('importe')
+          end  
+        end    
           
         column("cuenta")
         column("detalle")
@@ -43,9 +56,28 @@ ActiveAdmin.register Situation do
            "s/d"
          end
         end
+        column("importe mes ", :class => 'text-right', sortable: :importe)  do |situa|
+          if situa.importe then
+           vimes=(situa.importe/12*100).to_i.to_f/100
+             number_with_delimiter(vimes, delimiter: ",")
+          else
+            "s/d"
+          end
+         end
+         
+         column("%", :class => 'text-right', sortable: :importe)  do |situa|
+          if situa.importe then
+          vpor=situa.importe/scop2(params[:scope])*100
+           vpor.to_i
+          else
+            "s/d"
+          end
+         end
 
-      
-      actions
+         
+         if current_admin_user.id==1 then
+            actions
+         end
       end
       
       form :title => 'Edicion Cuentas' do |f|

@@ -277,7 +277,7 @@ ActiveAdmin.setup do |config|
   # override the content of the footer here.
   #
    config.footer = 'Sistema '
-
+   config.current_filters =false
   # == Sorting
   #
   # By default ActiveAdmin::OrderClause is used for sorting logic

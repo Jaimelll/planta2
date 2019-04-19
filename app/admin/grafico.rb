@@ -8,13 +8,23 @@ ActiveAdmin.register_page "grafico" do
   content title: "SITUACION FINANCIERA" do
    
      
+    @vtit="CUENTAS"
+    @vcuenta=[]
+    @vimporte=[]
+
+
+    Formula.where(product_id:1).order('unidad').each do |situa|
+      @vcuenta.push(situa.codigo)
+      @vimporte.push(Situation.where(cta:situa.cantidad).sum('importe'))
+          
+    end
 
 
 
     
                render :partial => "grafico",
-               :locals => { :param1 => ["aa","bb","cc"],
-                            :param2 => [20,10,30],
+               :locals => { :param1 => @vcuenta,
+                            :param2 => @vimporte,
  
                             :param20 =>  @vtit}
 

@@ -13,7 +13,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit' 
-
+# solo googlecharts para graficos
+gem 'googlecharts'
 
 gem 'pg', '~> 0.18.2'
 

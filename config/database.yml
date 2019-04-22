@@ -2,11 +2,11 @@ development:
 
   adapter: postgresql
   encoding: unicode
-  username: rails
-  password: password
+  username: rails2
+  password: rails2
   host: 127.0.0.1
   port: 5432
-  database: planta2d
+  database: plantad
   pool: 20
   timeout: 5000
 

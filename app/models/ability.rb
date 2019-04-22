@@ -10,14 +10,14 @@ class Ability
      
         case user.categoria # a_variable is the variable we want to compare
            when 1
-              can :manage, :all
-            when 2 #roy
-              can :manage, :all
-              can [:read,:update],  [AdminUser]
+             
+
               can :read, ActiveAdmin::Page, :name =>"Dashboard"
+              can :read, ActiveAdmin::Page, :name =>"grafico"
             # can :read, ActiveAdmin::Page, :name =>"Dpc"
             # can [:create,:read,:update,:destroy], [Phase,Activity,Piece]
-      
+              can [:read],  [Situation]
+
             when 3 #adm por defecto
               can :manage, :all
 

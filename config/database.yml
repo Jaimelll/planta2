@@ -6,7 +6,7 @@ development:
   password: rails2
   host: 127.0.0.1
   port: 5432
-  database: plantad
+  database: planta2d
   pool: 20
   timeout: 5000
 

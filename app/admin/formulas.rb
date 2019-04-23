@@ -9,7 +9,30 @@ ActiveAdmin.register Formula do
     
     
     
-    
+       member_action :activo, method: :put do
+          @num=Formula.where(product_id: 3, cantidad:1).
+                 select('id as dd').first.dd
+         Formula.where( product_id:3 ).update_all( unidad:0 )
+         Formula.where( product_id:3 ,cantidad: 1).update_all( unidad:1 )
+         redirect_to admin_grafico_path
+       end
+ 
+       member_action :pasivo, method: :put do
+          @num=Formula.where(product_id: 3, cantidad:1).
+                 select('id as dd').first.dd
+         Formula.where( product_id:3 ).update_all( unidad:0 )
+         Formula.where( product_id:3 ,cantidad: 2).update_all( unidad:1 )
+         redirect_to admin_grafico_path
+       end
+
+       member_action :resultado, method: :put do
+          @num=Formula.where(product_id: 3, cantidad:1).
+                 select('id as dd').first.dd
+         Formula.where( product_id:3 ).update_all( unidad:0 )
+         Formula.where( product_id:3 ,cantidad: 3).update_all( unidad:1 )
+         redirect_to admin_grafico_path
+       end
+ 
  
     
     

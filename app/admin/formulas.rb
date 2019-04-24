@@ -49,7 +49,7 @@ ActiveAdmin.register Formula do
                Product.where(id:mat.for1).select('nombre as dd').first.dd
             end  
             column("codigo")
-            column("product_id")
+           
             column("cantidad")
             column("factor")
             column("unidad")
@@ -70,8 +70,7 @@ ActiveAdmin.register Formula do
                   f.inputs "#{nn}" do
                   f.input :product_id, :label => 'Producto' ,
                            :input_html => { :value => params[:product_id]}, :as => :hidden
-                  f.input :for1, :label => 'Material', :as => :select, :collection =>  
-                                   Product.where('id>0').map{|u| [u.nombre.capitalize, u.id]}
+                  
                   f.input :codigo, :input_html => { :style =>  'width:30%'}
                   f.input :cantidad, :input_html => { :style =>  'width:30%'}
                   f.input :factor, :input_html => { :style =>  'width:30%'}
@@ -95,13 +94,11 @@ ActiveAdmin.register Formula do
                 nn=Product.where(id:params[:product_id]).
                          select('nombre as dd').first.dd.capitalize
     
-                row :product_id do |formula|
-                  link_to "#{nn}", admin_product_formulas_path(formula.product_id)
-                end
+               
 
               
                 row "Material" do |mat|
-                  Product.where(id:mat.for1).select('nombre as dd').first.dd
+                  link_to "#{nn}", admin_product_formulas_path(formula.product_id)
                 end 
                 row :codigo
                 row :cantidad

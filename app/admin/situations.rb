@@ -2,7 +2,8 @@ ActiveAdmin.register Situation do
 
       permit_params :cta, :cuenta,:detalle, :importe,:admin_user_id
      
-      menu priority: 2, label: "CUENTAS"
+     # menu priority: 2, label: "CUENTAS"
+     menu false
 
 
    

@@ -54,6 +54,7 @@ ActiveAdmin.register Formula do
             column("factor")
             column("unidad")
             column("seccion")
+            column("pedido")
               actions
           end
     

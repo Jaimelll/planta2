@@ -6,7 +6,15 @@ ActiveAdmin.register_page "Dashboard" do
 
   
     content title: "Estados Financieros" do
-       
+      vaf=current_admin_user.periodo
+      case vaf
+        when 1
+          vfac=[1,2,3,10,11,12,24,100] 
+        when 2  
+         vfac=[1,12]  
+      end
+
+
     
       columns do
          
@@ -20,7 +28,7 @@ ActiveAdmin.register_page "Dashboard" do
                       column  do  
                         
                         panel  "ACTIVO" do   
-                      vact=Formula.where(product_id:2,unidad:1).select('factor')
+                      vact=Formula.where(product_id:2,unidad:1,factor:vfac).select('factor')
                       
                       table_for Formula.where(product_id:1,seccion:vact).order('unidad')  do 
                        conta=0
@@ -61,7 +69,7 @@ ActiveAdmin.register_page "Dashboard" do
                      
                     column  do  
                       panel  "PASIVO" do   
-                      vact=Formula.where(product_id:2,unidad:2).select('factor')
+                      vact=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
                       table_for Formula.where(product_id:1,seccion:vact).order('unidad')  do 
                         conta=0
                         veti2=""

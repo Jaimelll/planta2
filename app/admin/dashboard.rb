@@ -2,6 +2,18 @@ ActiveAdmin.register_page "Dashboard" do
 
   menu priority: 1, label: "EEFF"
 
+  action_item :only=> :index do
+    $vaf=current_admin_user.periodo
+      link_to  'E P y G', af_admin_admin_user_path(1), method: :put
+  end
+  
+  action_item :only=> :index do
+    $vaf=current_admin_user.periodo
+      link_to  'Liquidez', liq_admin_admin_user_path(1), method: :put
+  end
+  
+
+
   
 
   
@@ -10,8 +22,10 @@ ActiveAdmin.register_page "Dashboard" do
       case vaf
         when 1
           vfac=[1,2,3,10,11,12,24,100] 
+          vn='Estado de Situación Financiera'
         when 2  
          vfac=[1,12]  
+         vn='Liquidez'
       end
 
 
@@ -63,12 +77,19 @@ ActiveAdmin.register_page "Dashboard" do
                           end
 
                         end
-                        
+                        vact2=Formula.where(product_id:2,unidad:1,factor:vfac).select('factor')
+                        vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
+                        vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
+                         
+                        vspane=vn+' - Total importe Activo ='+vsta
+                        panel  vspane do  
+                        end
                       end
                     end
                      
                     column  do  
-                      panel  "PASIVO" do   
+                      panel  "PASIVO" do 
+                         
                       vact=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
                       table_for Formula.where(product_id:1,seccion:vact).order('unidad')  do 
                         conta=0
@@ -105,7 +126,13 @@ ActiveAdmin.register_page "Dashboard" do
 
                         
                       end
-                    
+                      vact2=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
+                      vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
+                      vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
+                       
+                      vspane=vn+' - Total importe Pasivo ='+vsta
+                      panel  vspane do  
+                      end                    
                    
                     end
     

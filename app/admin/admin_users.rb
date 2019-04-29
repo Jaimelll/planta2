@@ -7,6 +7,26 @@ ActiveAdmin.register AdminUser do
 menu  priority: 17,label: "Usuarios"
 
 
+member_action :af, method: :put do
+  @cid=current_admin_user.id
+AdminUser.where(id: @cid).update_all( periodo: 1 )
+ redirect_to admin_dashboard_path
+end
+
+
+member_action :liq, method: :put do
+  @cid=current_admin_user.id
+AdminUser.where(id: @cid).update_all( periodo: 2 )
+ redirect_to admin_dashboard_path
+end
+
+
+
+
+
+
+
+
   index  do
     cat=3
     if current_admin_user.categoria==cat then

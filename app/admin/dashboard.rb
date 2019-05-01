@@ -81,8 +81,8 @@ ActiveAdmin.register_page "Dashboard" do
                         vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
                         vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                          
-                        vspane=vn+' - Total importe Activo ='+vsta
-                        panel  vspane do  
+                        vspane=vn+' Total importe Activo ='+vsta
+                        panel  vspane, :class => 'text-right' do  
                         end
                       end
                     end
@@ -130,8 +130,8 @@ ActiveAdmin.register_page "Dashboard" do
                       vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
                       vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                        
-                      vspane=vn+' - Total importe Pasivo ='+vsta
-                      panel  vspane do  
+                      vspane=vn+' Total importe Pasivo ='+vsta
+                      panel  vspane, :class => 'text-right' do  
                       end                    
                    
                     end

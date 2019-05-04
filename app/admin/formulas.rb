@@ -46,7 +46,7 @@ ActiveAdmin.register Formula do
     index :title => "Formulación"  do
 
             column("Material")do |mat|
-               Product.where(id:mat.for1).select('nombre as dd').first.dd
+               Product.where(id:mat.product_id).select('nombre as dd').first.dd
             end  
             column("codigo")
            
@@ -79,6 +79,9 @@ ActiveAdmin.register Formula do
                   f.input :seccion, :input_html => { :style =>  'width:30%'}
                   f.input :obs, :input_html => { :style =>  'width:30%'}
                   f.input :pedido, :input_html => { :style =>  'width:30%'}
+
+                 
+                  
                   f.input :admin_user_id, :input_html => 
                            { :value => current_admin_user.id }, :as => :hidden
                end

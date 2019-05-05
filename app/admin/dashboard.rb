@@ -45,8 +45,8 @@ ActiveAdmin.register_page "Dashboard" do
                         
                         panel  "ACTIVO" do   
                      
-                      
-                      table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
+                      vfac1=Formula.where(product_id:2,unidad:1,factor:vfac).select('factor')
+                      table_for Formula.where(product_id:1,seccion:vfac1).order('unidad')  do 
                        conta=0
                        veti2=""
                         column("Origen") do |formula|
@@ -80,7 +80,7 @@ ActiveAdmin.register_page "Dashboard" do
 
                         end
                        
-                        vact3=Formula.where(product_id:1,seccion:vfac).select('cantidad')
+                        vact3=Formula.where(product_id:1,seccion:vfac1).select('cantidad')
                         vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                          
                         vspane=vn+' Total importe Activo ='+vsta
@@ -92,8 +92,8 @@ ActiveAdmin.register_page "Dashboard" do
                     column  do  
                       panel  "PASIVO" do 
                          
-                     
-                      table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
+                        vfac2=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
+                      table_for Formula.where(product_id:1,seccion:vfac2).order('unidad')  do 
                         conta=0
                         veti2=""
                          column("Origen") do |formula|
@@ -129,7 +129,7 @@ ActiveAdmin.register_page "Dashboard" do
                         
                       end
                       
-                      vact3=Formula.where(product_id:1,seccion:vfac).select('cantidad')
+                      vact3=Formula.where(product_id:1,seccion:vfac2).select('cantidad')
                       vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                        
                       vspane=vn+' Total importe Pasivo ='+vsta

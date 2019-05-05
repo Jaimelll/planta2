@@ -19,12 +19,14 @@ ActiveAdmin.register_page "Dashboard" do
   
     content title: "Estados Financieros" do
       vaf=current_admin_user.periodo
+      vuni=[1,2]
       case vaf
         when 1
-          vfac=[1,2,3,10,11,12,24,100] 
+          vfac=Formula.where(product_id:2,unidad:vuni).select('factor')
           vn='Estado de Situación Financiera'
         when 2  
-         vfac=[1,12]  
+          
+         vfac=[1,12]
          vn='Liquidez'
       end
 
@@ -42,9 +44,9 @@ ActiveAdmin.register_page "Dashboard" do
                       column  do  
                         
                         panel  "ACTIVO" do   
-                      vact=Formula.where(product_id:2,unidad:1,factor:vfac).select('factor')
+                     
                       
-                      table_for Formula.where(product_id:1,seccion:vact).order('unidad')  do 
+                      table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
                        conta=0
                        veti2=""
                         column("Origen") do |formula|
@@ -77,8 +79,8 @@ ActiveAdmin.register_page "Dashboard" do
                           end
 
                         end
-                        vact2=Formula.where(product_id:2,unidad:1,factor:vfac).select('factor')
-                        vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
+                       
+                        vact3=Formula.where(product_id:1,seccion:vfac).select('cantidad')
                         vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                          
                         vspane=vn+' Total importe Activo ='+vsta
@@ -90,8 +92,8 @@ ActiveAdmin.register_page "Dashboard" do
                     column  do  
                       panel  "PASIVO" do 
                          
-                      vact=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
-                      table_for Formula.where(product_id:1,seccion:vact).order('unidad')  do 
+                     
+                      table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
                         conta=0
                         veti2=""
                          column("Origen") do |formula|
@@ -126,8 +128,8 @@ ActiveAdmin.register_page "Dashboard" do
 
                         
                       end
-                      vact2=Formula.where(product_id:2,unidad:2,factor:vfac).select('factor')
-                      vact3=Formula.where(product_id:1,seccion:vact2).select('cantidad')
+                      
+                      vact3=Formula.where(product_id:1,seccion:vfac).select('cantidad')
                       vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
                        
                       vspane=vn+' Total importe Pasivo ='+vsta

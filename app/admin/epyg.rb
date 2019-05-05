@@ -5,50 +5,83 @@ ActiveAdmin.register_page "Epyg" do
   
 
   
-    content title: "Estado de Ganancias y Pérdidas (Resultados)" do
-       
     
-      columns do
-         
-    
-           
-          
-    
-    column do
-    panel  "II.-ESTADO DE GANANCIAS Y PERDIDAS (RESULTADOS)" do
-      table_for Formula.where(product_id:1,seccion:100).order('unidad')  do 
-    
-      
-    
+   ##########################################################   
     
   
+   content title: "Estado de Ganancias y Pérdidas (Resultados)" do
+   
+        vfac=Formula.where(product_id:2,unidad:3).select('factor')
+        vact3=Formula.where(product_id:1,seccion:vfac).select('cantidad')
+        vn='Estado de Ganancias y Pérdidas'
     
 
-      
-       column("CUENTA") do |formula|
-       
-       
-        vscop=formula.cantidad.to_i
-        link_to formula.codigo.capitalize, admin_situations_path(scope:vscop)               
-        end
-        column("Importe", :class => 'text-right') do |formula|
-        
-       
-         vimp= Situation.where(cta:formula.cantidad).sum('importe')
-          number_with_delimiter(vimp, delimiter: ",")       
-          end
 
-             
-   
-    
-    
-       end#panel
-    
+  
+    columns do
+       
+  
+         
         
-     end   #table fo
-    end
-   
-    
-  end
-  end # content
+                
+           
+                  columns do
+                    
+                    column  do  
+                      
+                      panel  "RESULTADOS" do   
+                    
+                    
+                    table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
+                     conta=0
+                     veti2=""
+                      column("Origen") do |formula|
+                         
+                        veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
+                        unless veti2== veti1
+                          veti2= veti1
+                          conta=0
+                        end  
+                        conta=conta+1
+                        if conta==1 then
+                          veti1
+                        else
+                          " "  
+                        end
+                        
+                        end 
+                    
+                     column("Cuenta") do |formula|
+                     
+                      vscop=formula.cantidad.to_i
+                      link_to formula.codigo.capitalize, admin_situations_path(scope:vscop)
+                             
+                      end
+                      column("Importe", :class => 'text-right') do |formula|
+                      
+                     
+                       vimp= Situation.where(cta:formula.cantidad).sum('importe')
+                        number_with_delimiter(vimp, delimiter: ",")       
+                        end
+
+                      end
+                     
+                      
+                      vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
+                       
+                      vspane=vn+' Total importe ='+vsta
+                      panel  vspane, :class => 'text-right' do  
+                      end
+                    end
+                  end
+                   
+ 
+
+        end   #panel
+  end# de column
+  
+  
+  
+
+end # content
 end

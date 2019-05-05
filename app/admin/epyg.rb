@@ -70,7 +70,7 @@ ActiveAdmin.register_page "Epyg" do
                      
                       
                       
-                      vacumst=number_with_delimiter(@vacums, delimiter: ",") 
+                      vacumst=number_with_delimiter(@vacums.to_i, delimiter: ",") 
                       vspane=vn+' Total importe ='+vacumst
                       panel  vspane, :class => 'text-right' do  
                       end

@@ -26,7 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
           vn='Estado de Situación Financiera'
         when 2  
           
-         vfac=[1,12]
+         vfac=[1,10]
          vn='Liquidez'
       end
 

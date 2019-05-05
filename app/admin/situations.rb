@@ -89,7 +89,7 @@ ActiveAdmin.register Situation do
        f.input :cuenta , :input_html => { :style =>  'width:30%'}
        f.input :detalle , :input_html => { :style =>  'width:30%'}
        f.input :importe ,:input_html => { :style =>  'width:30%'}
-       f.input :admin_user_id, :input_html => { :value => current_admin_user.categoria }, :as => :hidden
+       f.input :admin_user_id, :input_html => { :value => current_admin_user.id }, :as => :hidden
      
         f.actions
       

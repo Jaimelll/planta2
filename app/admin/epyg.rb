@@ -35,6 +35,7 @@ ActiveAdmin.register_page "Epyg" do
                     table_for Formula.where(product_id:1,seccion:vfac).order('seccion,unidad')  do 
                      conta=0
                      veti2=""
+                     @vacums=0
                       column("Origen") do |formula|
                          
                         veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
@@ -59,17 +60,18 @@ ActiveAdmin.register_page "Epyg" do
                       end
                       column("Importe", :class => 'text-right') do |formula|
                       
-                     
-                       vimp= Situation.where(cta:formula.cantidad).sum('importe')
+                       
+                       vimp= Situation.where(cta:formula.cantidad).sum('importe')*formula.factor
+                       @vacums=@vacums+vimp
                         number_with_delimiter(vimp, delimiter: ",")       
                         end
 
                       end
                      
                       
-                      vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
-                       
-                      vspane=vn+' Total importe ='+vsta
+                      
+                      vacumst=number_with_delimiter(@vacums, delimiter: ",") 
+                      vspane=vn+' Total importe ='+vacumst
                       panel  vspane, :class => 'text-right' do  
                       end
                     end

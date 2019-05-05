@@ -32,7 +32,7 @@ ActiveAdmin.register_page "Epyg" do
                       panel  "RESULTADOS" do   
                     
                     
-                    table_for Formula.where(product_id:1,seccion:vfac).order('unidad')  do 
+                    table_for Formula.where(product_id:1,seccion:vfac).order('seccion,unidad')  do 
                      conta=0
                      veti2=""
                       column("Origen") do |formula|

@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   action_item :only=> :index do
     $vaf=current_admin_user.periodo
-      link_to  'E P y G', af_admin_admin_user_path(1), method: :put
+      link_to  'EEFF', af_admin_admin_user_path(1), method: :put
   end
   
   action_item :only=> :index do

@@ -77,8 +77,30 @@ ActiveAdmin.register_page "Dashboard" do
                          vimp= Situation.where(cta:formula.cantidad).sum('importe')
                           number_with_delimiter(vimp, delimiter: ",")       
                           end
+                          column("Sub_total") do |formula|
+                           
+                            veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
+                            
+                            unless veti2== veti1
+                              veti2= veti1
+                              conta=0
+                            end  
+                            conta=conta+1
+                            if conta==1 then
+                              vcttas=Formula.where(product_id:1,seccion:formula.seccion).select('cantidad')
+                             
+                              div :class =>"grueso" do
+                                number_with_delimiter(Situation.where(cta:vcttas).sum('importe'), delimiter: ",")  
+                              end
+
+                            else
+                              " "  
+                            end
+                            
+                            end 
 
                         end
+                        
                        
                         vact3=Formula.where(product_id:1,seccion:vfac1).select('cantidad')
                         vsta=number_with_delimiter(Situation.where(cta:vact3).sum('importe'), delimiter: ",").to_s
@@ -124,6 +146,27 @@ ActiveAdmin.register_page "Dashboard" do
                          vimp= Situation.where(cta:formula.cantidad).sum('importe')
                           number_with_delimiter(vimp, delimiter: ",")       
                           end
+                          column("Sub_total") do |formula|
+                           
+                            veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
+                            
+                            unless veti2== veti1
+                              veti2= veti1
+                              conta=0
+                            end  
+                            conta=conta+1
+                            if conta==1 then
+                              vcttas=Formula.where(product_id:1,seccion:formula.seccion).select('cantidad')
+                             
+                              div :class =>"grueso" do
+                                number_with_delimiter(Situation.where(cta:vcttas).sum('importe'), delimiter: ",")  
+                              end
+
+                            else
+                              " "  
+                            end
+                            
+                            end 
 
 
                         

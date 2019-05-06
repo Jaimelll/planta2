@@ -35,7 +35,10 @@ ActiveAdmin.register_page "Epyg" do
                     table_for Formula.where(product_id:1,seccion:vfac).order('seccion,unidad')  do 
                      conta=0
                      veti2=""
+                     contaa=0
+                     vetii2=""
                      @vacums=0
+                     
                       column("Origen") do |formula|
                          
                         veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
@@ -58,6 +61,7 @@ ActiveAdmin.register_page "Epyg" do
                       link_to formula.codigo.capitalize, admin_situations_path(scope:vscop)
                              
                       end
+
                       column("Importe", :class => 'text-right') do |formula|
                       
                        
@@ -65,6 +69,15 @@ ActiveAdmin.register_page "Epyg" do
                        @vacums=@vacums+vimp
                         number_with_delimiter(vimp, delimiter: ",")       
                         end
+
+
+                     
+
+
+
+
+
+
 
                       end
                      

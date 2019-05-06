@@ -70,6 +70,31 @@ ActiveAdmin.register_page "Epyg" do
                         number_with_delimiter(vimp, delimiter: ",")       
                         end
 
+                        column("Sub_total") do |formula|
+                         
+                          veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
+                         
+                          unless veti2== veti1
+                            veti2= veti1
+                            conta=0
+                          end  
+                          conta=conta+1
+                          if conta==1 then
+                            vsecci=Formula.where(product_id:1,seccion:formula.seccion)
+                            vcttas=vsecci.select('cantidad')
+                            vtimp=0
+                            vsecci.each do  |xcta|       
+                             vtimp=vtimp+Situation.where(cta:xcta.cantidad).sum('importe')*xcta.factor
+                            end 
+                            div :class =>"grueso" do
+                              number_with_delimiter(vtimp, delimiter: ",")  
+                            end
+                          else
+                            " "  
+                          end
+                          
+                          end 
+                      
 
                      
 

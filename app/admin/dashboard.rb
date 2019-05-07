@@ -90,7 +90,8 @@ ActiveAdmin.register_page "Dashboard" do
                               vcttas=Formula.where(product_id:1,seccion:formula.seccion).select('cantidad')
                              
                               div :class =>"grueso" do
-                                number_with_delimiter(Situation.where(cta:vcttas).sum('importe'), delimiter: ",")  
+                               
+                                number_to_currency(Situation.where(cta:vcttas).sum('importe'), unit: " ", separator: ".", delimiter: ",", precision: 2) 
                               end
 
                             else
@@ -144,7 +145,8 @@ ActiveAdmin.register_page "Dashboard" do
                         
                        
                          vimp= Situation.where(cta:formula.cantidad).sum('importe')
-                          number_with_delimiter(vimp, delimiter: ",")       
+                          number_with_delimiter(vimp, delimiter: ",")  
+                               
                           end
                           column("Sub_total") do |formula|
                            
@@ -159,7 +161,8 @@ ActiveAdmin.register_page "Dashboard" do
                               vcttas=Formula.where(product_id:1,seccion:formula.seccion).select('cantidad')
                              
                               div :class =>"grueso" do
-                                number_with_delimiter(Situation.where(cta:vcttas).sum('importe'), delimiter: ",")  
+                              
+                                number_to_currency(Situation.where(cta:vcttas).sum('importe'), unit: " ", separator: ".", delimiter: ",", precision: 2) 
                               end
 
                             else

@@ -88,7 +88,7 @@ ActiveAdmin.register_page "Epyg" do
                             end 
                             div :class =>"grueso" do
                              
-                              number_to_currency(vtimp, unit: "S/   ", separator: ".", delimiter: ",", precision: 2)
+                              number_to_currency(vtimp, unit: " ", separator: ".", delimiter: ",", precision: 2)
                             end
                           else
                             " "  
@@ -109,7 +109,7 @@ ActiveAdmin.register_page "Epyg" do
                      
                       
                       
-                      vacumst=number_to_currency(@vacums, unit: "S/   ", separator: ".", delimiter: ",", precision: 2)
+                      vacumst=number_to_currency(@vacums, unit: " ", separator: ".", delimiter: ",", precision: 2)
                       vspane=vn+' Total importe ='+vacumst
                       panel  vspane, :class => 'text-right' do  
                       end

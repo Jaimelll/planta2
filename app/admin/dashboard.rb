@@ -77,6 +77,8 @@ ActiveAdmin.register_page "Dashboard" do
                          vimp= Situation.where(cta:formula.cantidad).sum('importe')
                           number_with_delimiter(vimp, delimiter: ",")       
                           end
+                          conta=0
+                          veti2=""
                           column("Sub_total") do |formula|
                            
                             veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
@@ -92,7 +94,7 @@ ActiveAdmin.register_page "Dashboard" do
                               div :class =>"grueso" do
                                 number_with_delimiter(Situation.where(cta:vcttas).sum('importe'), delimiter: ",")  
                               end
-
+                              
                             else
                               " "  
                             end
@@ -146,6 +148,8 @@ ActiveAdmin.register_page "Dashboard" do
                          vimp= Situation.where(cta:formula.cantidad).sum('importe')
                           number_with_delimiter(vimp, delimiter: ",")       
                           end
+                          conta=0
+                          veti2=""
                           column("Sub_total") do |formula|
                            
                             veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd

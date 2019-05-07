@@ -38,7 +38,7 @@ ActiveAdmin.register_page "Epyg" do
                      contaa=0
                      vetii2=""
                      @vacums=0
-                     
+                     vtimp=0
                       column("Origen") do |formula|
                          
                         veti1=Formula.where(product_id:2,factor:formula.seccion).select('codigo as dd').first.dd
@@ -83,12 +83,13 @@ ActiveAdmin.register_page "Epyg" do
                           if conta==1 then
                             vsecci=Formula.where(product_id:1,seccion:formula.seccion)
                             vcttas=vsecci.select('cantidad')
-                            vtimp=0
+                            
                             vsecci.each do  |xcta|       
                              vtimp=vtimp+Situation.where(cta:xcta.cantidad).sum('importe')*xcta.factor
                             end 
                             div :class =>"grueso" do
-                              number_with_delimiter(vtimp, delimiter: ",")  
+                             
+                              number_to_currency(vtimp, unit: " ", separator: ".", delimiter: ",", precision: 2)
                             end
                           else
                             " "  
@@ -109,7 +110,7 @@ ActiveAdmin.register_page "Epyg" do
                      
                       
                       
-                      vacumst=number_to_currency(@vacums, unit: "S/ ", separator: ".", delimiter: ",", precision: 2)
+                      vacumst=number_to_currency(@vacums, unit: " ", separator: ".", delimiter: ",", precision: 2)
                       vspane=vn+' Total importe ='+vacumst
                       panel  vspane, :class => 'text-right' do  
                       end

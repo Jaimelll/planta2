@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_205424) do
     t.integer "familia"
     t.integer "nivel"
     t.date "fecha"
+    t.integer "orden"
     t.integer "activo"
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false

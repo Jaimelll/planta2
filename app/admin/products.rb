@@ -18,9 +18,9 @@ ActiveAdmin.register Product do
     
     permit_params :codigo, :nombre, :descripcion, :precio, :costo,
                   :unidad, :seccion, :inventario, :pedido, :clase,
-                  :familia, :nivel, :fecha, :activo, :admin_user_id
+                  :familia, :nivel, :fecha, :orden,:activo, :admin_user_id
     
-    menu  priority: 30, label: "Productos"
+    menu  priority: 2, label: "Productos"
     
     ActiveAdmin.register Formula do
       belongs_to :product

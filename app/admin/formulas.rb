@@ -1,6 +1,11 @@
 ActiveAdmin.register Formula do
 
     menu false
+    
+
+    permit_params :codigo,  :obs,:cantidad, :factor, :unidad, :seccion,
+                  :pedido, :for1, :for2, :for3, :for4,
+                  :for5, :for6, :admin_user_id
 
 
     

@@ -15,6 +15,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :familia  
       t.integer :nivel  
       t.date :fecha  
+      t.integer :orden  
       t.integer :activo   
       t.references :admin_user, foreign_key: true      
       t.timestamps

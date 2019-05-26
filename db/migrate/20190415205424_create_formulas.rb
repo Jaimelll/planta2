@@ -8,8 +8,7 @@ class CreateFormulas < ActiveRecord::Migration[5.2]
       t.float :cantidad
       t.float :factor
       t.integer :unidad      
-      t.integer :seccion
-      t.string :obs
+      t.integer :seccion      
       t.float :pedido
       t.integer :for1    
       t.integer :for2

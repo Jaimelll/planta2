@@ -4,6 +4,7 @@ class CreateFormulas < ActiveRecord::Migration[5.2]
 
       t.string :codigo
       t.references :product, foreign_key: true
+      t.string :obs	
       t.float :cantidad
       t.float :factor
       t.integer :unidad      
@@ -17,6 +18,9 @@ class CreateFormulas < ActiveRecord::Migration[5.2]
       t.string :for5
       t.string :for6
       t.references :admin_user, foreign_key: true
+
+
+
 
       t.timestamps
     end

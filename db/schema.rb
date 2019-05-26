@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_191248) do
+ActiveRecord::Schema.define(version: 2019_04_15_205424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2019_04_16_191248) do
   create_table "formulas", force: :cascade do |t|
     t.string "codigo"
     t.bigint "product_id"
+    t.string "obs"
     t.float "cantidad"
     t.float "factor"
     t.integer "unidad"
     t.integer "seccion"
-    t.string "obs"
     t.float "pedido"
     t.integer "for1"
     t.integer "for2"
@@ -66,20 +66,9 @@ ActiveRecord::Schema.define(version: 2019_04_16_191248) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "codigo"
     t.string "nombre"
     t.string "descripcion"
-    t.integer "orden"
-    t.integer "cantidad"
-    t.integer "sele1"
-    t.integer "sele2"
-    t.integer "sele3"
-    t.integer "sele4"
-    t.string "str1"
-    t.float "num1"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "admin_user_id"
-    t.string "codigo"
     t.float "precio"
     t.float "costo"
     t.integer "unidad"
@@ -89,23 +78,15 @@ ActiveRecord::Schema.define(version: 2019_04_16_191248) do
     t.integer "clase"
     t.integer "familia"
     t.integer "nivel"
-    t.date "fecha1"
+    t.date "fecha"
     t.integer "activo"
-    t.index ["admin_user_id"], name: "index_products_on_admin_user_id"
-  end
-
-  create_table "situations", force: :cascade do |t|
-    t.float "cta"
-    t.string "cuenta"
-    t.string "detalle"
-    t.float "importe"
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_user_id"], name: "index_situations_on_admin_user_id"
+    t.index ["admin_user_id"], name: "index_products_on_admin_user_id"
   end
 
   add_foreign_key "formulas", "admin_users"
   add_foreign_key "formulas", "products"
-  add_foreign_key "situations", "admin_users"
+  add_foreign_key "products", "admin_users"
 end

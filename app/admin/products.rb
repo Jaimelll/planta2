@@ -13,14 +13,12 @@ ActiveAdmin.register Product do
     # end
     
     #menu if: proc{ current_admin_user.categoria==2 }, priority: 3, label: "Productos"
-     
+
     
     
-    permit_params :nombre, :descripcion, :orden, :cantidad, :sele1,
-                  :sele2, :sele3, :sele4, :str1, :num1,
-                  :codigo, :precio, :orden, :costo, :unidad,
-                  :seccion, :inventario, :pedido, :clase, :familia,
-                  :nivel, :fecha1, :pedido, :activo, :admin_user_id
+    permit_params :codigo, :nombre, :descripcion, :precio, :costo,
+                  :unidad, :seccion, :inventario, :pedido, :clase,
+                  :familia, :nivel, :fecha, :activo, :admin_user_id
     
     menu  priority: 30, label: "Productos"
     

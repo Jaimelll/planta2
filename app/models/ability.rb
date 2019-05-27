@@ -12,12 +12,12 @@ class Ability
            when 1
              
 
-              can :read, ActiveAdmin::Page, :name =>"Epyg"
-              can :read, ActiveAdmin::Page, :name =>"Dashboard"
-              can :read, ActiveAdmin::Page, :name =>"grafico"
+            # can :read, ActiveAdmin::Page, :name =>"Epyg"
+            # can :read, ActiveAdmin::Page, :name =>"Dashboard"
+            # can :read, ActiveAdmin::Page, :name =>"grafico"
             # can :read, ActiveAdmin::Page, :name =>"Dpc"
-            # can [:create,:read,:update,:destroy], [Phase,Activity,Piece]
-              can [:read],  [Situation]
+             can [:create,:read,:update,:destroy], [Product,Formula]
+             
 
             when 3 #adm por defecto
               can :manage, :all

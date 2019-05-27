@@ -26,6 +26,7 @@ ActiveAdmin.register Formula do
             column("unidad")
             column("seccion")
             column("pedido")
+            column("obs")
               actions
           end
     
